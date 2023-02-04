@@ -24,7 +24,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
       <style>
          .list-cart{
-            margin-top: 10%;
+            margin-top: 20%;
          }
          .total-price{
             position: absolute;
@@ -118,13 +118,23 @@
          .author-copy{
             color: #f7444e;
          }
+         .headnavbar{
+            position: fixed !important;
+            top: 0 !important;
+            width: 100%;
+            background-color: white;
+            z-index: 100;
+         }
+         .footer_links a:hover{
+            color: #f7444e !important;
+         }
       </style>
    </head>
    <body>
       @include('sweetalert::alert')
       <div class="hero_area">
          <!-- header section strats -->
-         <header class="header_section">
+         <header class="header_section headnavbar">
             <div class="container">
                <nav class="navbar navbar-expand-lg custom_nav-container ">
                   <a class="navbar-brand" href="{{route('index')}}"><img width="250" src="images/logo.png" alt="#" /></a>
@@ -245,47 +255,49 @@
                      </ul>
                     </div>
                </nav>
-               <div class="message">
+            </header>
+               <div class="container">
                      {{-- @if (session()->has('message'))
                      <div class="alert alert-success alert-dismissible">
                            <button type="button" class="close" data-dismiss="alert">&times;</button>
                            {{session()->get('message')}}
                      </div>       
                      @endif --}}
+                     <table class="table list-cart">
+                        <thead>
+                           <tr>
+                                 <th>Product title</th>
+                                 <th>Product quantity</th>
+                                 <th>Price</th>
+                                 <th>Image</th>
+                                 <th>Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <?php $total_price=0; ?>
+                           @foreach ($cart as $item)
+                           <tr>
+                                 <td>{{$item->product_title}}</td>
+                                 <td>{{$item->quantity}}</td>
+                                 <td>${{$item->price}}</td>
+                                 <td>
+                                    <img src="{{$item->image}}" width="80px">
+                                 </td>
+                                 <td>
+                                    <a href="{{route('deleteCart', $item->id)}}" onclick="confirmation(event)"><button class="btn btn-danger">Delete</button></a>
+                                 </td>
+                           </tr>
+                           <?php $total_price= $total_price + $item->price; ?>
+                           @endforeach
+                           
+                        </tbody>
+                     </table>
+                     <div class="pagination-product mt-5">
+                        {{$cart->links()}}
+                       
+                     </div>
                </div>
-               <table class="table list-cart">
-                  <thead>
-                     <tr>
-                           <th>Product title</th>
-                           <th>Product quantity</th>
-                           <th>Price</th>
-                           <th>Image</th>
-                           <th>Action</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <?php $total_price=0; ?>
-                     @foreach ($cart as $item)
-                     <tr>
-                           <td>{{$item->product_title}}</td>
-                           <td>{{$item->quantity}}</td>
-                           <td>${{$item->price}}</td>
-                           <td>
-                              <img src="{{$item->image}}" width="80px">
-                           </td>
-                           <td>
-                              <a href="{{route('deleteCart', $item->id)}}" onclick="confirmation(event)"><button class="btn btn-danger">Delete</button></a>
-                           </td>
-                     </tr>
-                     <?php $total_price= $total_price + $item->price; ?>
-                     @endforeach
-                     
-                  </tbody>
-               </table>
-               <div class="pagination-product mt-5">
-                  {{$cart->links()}}
-                 
-               </div>
+             
                <div class="total-price">
                   <h3>Total price: ${{$total_price}}</h3>
                </div>
@@ -327,7 +339,7 @@
                   <div class="col-md-7">
                      <div class="row">
                         <div class="col-md-6">
-                     <div class="widget_menu">
+                     <div class="widget_menu footer_links">
                         <h3>Menu</h3>
                         <ul>
                            <li><a href="{{route('index')}}">Home</a></li>
@@ -339,7 +351,7 @@
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="widget_menu">
+                     <div class="widget_menu footer_links">
                         <h3>Account</h3>
                         <ul>
                            <li><a href="{{route('showCart')}}">Checkout</a></li>

@@ -65,14 +65,23 @@
          .author-copy{
             color: #f7444e;
          }
-       
+       .headnavbar{
+         position: fixed !important;
+         top: 0 !important;
+         width: 100%;
+         background-color: white;
+         z-index: 100;
+       }
+       .footer_links a:hover{
+            color: #f7444e !important;
+         }
       </style>
    </head>
    <body>
       @include('sweetalert::alert')
       <div class="hero_area">
          <!-- header section strats -->
-         <header class="header_section">
+         <header class="header_section headnavbar">
             <div class="container">
                <nav class="navbar navbar-expand-lg custom_nav-container ">
                   <a class="navbar-brand" href="{{route('index')}}"><img width="250" src="images/logo.png" alt="#" /></a>
@@ -202,7 +211,7 @@
          </header>
          <!-- end header section -->
          <!-- slider section -->
-         <section class="slider_section ">
+         <section class="slider_section mt-5">
             <div class="slider_bg_box">
                <img src="images/slider-bg.jpg" alt="">
             </div>
@@ -775,7 +784,7 @@
                   <div class="col-md-7">
                      <div class="row">
                         <div class="col-md-6">
-                     <div class="widget_menu">
+                     <div class="widget_menu footer_links">
                         <h3>Menu</h3>
                         <ul>
                            <li><a href="{{route('index')}}">Home</a></li>
@@ -787,7 +796,7 @@
                      </div>
                   </div>
                   <div class="col-md-6">
-                     <div class="widget_menu">
+                     <div class="widget_menu footer_links">
                         <h3>Account</h3>
                         <ul>
                            <li><a href="{{route('showCart')}}">Checkout</a></li>
