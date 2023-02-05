@@ -63,8 +63,8 @@ class HomeController extends Controller
                 $cart->save();
 
                 Alert::success("Add to cart successfully", "We have added the product to the cart");
-
                 return redirect()->back();
+                // return redirect()->back()->with("toast_message", "We have added the product to the cart. Please check your cart");
             }else{
                 $cart = new Cart;
 
@@ -85,6 +85,7 @@ class HomeController extends Controller
                 $cart->save();
 
                 Alert::success("Add to cart successfully", "We have added the product to the cart");
+                // return redirect()->back()->with("toast_message", "We have added the product to the cart. Please check your cart");
     
                 return redirect()->back();
             }

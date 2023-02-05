@@ -20,6 +20,11 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+      {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
       <style>
          .pagination-product{
             margin-left: 34% !important;
@@ -857,5 +862,17 @@
       <script src="home/js/custom.js"></script>
 
       <script src="js/validate.js"></script>
+
+      {{-- <script>
+         @if(Session::has("toast_message"))
+            toastr.options = {
+               "closeButton": true,
+               "progressBar": true,
+               "positionClass": "toast-bottom-right",
+               "timeOut": 5000,
+            }
+            toastr.success("{{session('toast_message')}}", 'Add to cart successfully')
+         @endif
+      </script> --}}
    </body>
 </html>

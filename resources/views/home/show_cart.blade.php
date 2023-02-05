@@ -284,7 +284,8 @@
                                     <img src="{{$item->image}}" width="80px">
                                  </td>
                                  <td>
-                                    <a href="{{route('deleteCart', $item->id)}}" onclick="confirmation(event)"><button class="btn btn-danger">Delete</button></a>
+                                    <a href="{{route('deleteCart', $item->id)}}" onclick="return confirm('Are you sure want to delete this product?')"><button class="btn btn-danger">Delete</button></a>
+                                    
                                  </td>
                            </tr>
                            <?php $total_price= $total_price + $item->price; ?>
@@ -392,33 +393,7 @@
          <p class="mx-auto">Copyright © 2023 By <span class="author-copy">Tran Dac Thuong</span>. All Rights Reserved</p>
       </div>
 
-      <script>
-         function confirmation(ev) {
-           ev.preventDefault();
-           var urlToRedirect = ev.currentTarget.getAttribute('href');  
-           console.log(urlToRedirect); 
-           swal({
-               title: "Are you sure to delete this product",
-               text: "You will not be able to revert this!",
-               icon: "warning",
-               buttons: true,
-               dangerMode: true,
-           })
-           .then((willCancel) => {
-               if (willCancel) {
-   
-   
-                    
-                   window.location.href = urlToRedirect;
-                  
-               }  
-   
-   
-           });
-   
-           
-       }
-   </script>
+     
 
 <script>
    document.addEventListener("DOMContentLoaded", function(event) { 

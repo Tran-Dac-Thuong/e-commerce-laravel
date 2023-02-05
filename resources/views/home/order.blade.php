@@ -247,7 +247,7 @@
                             </td>
                             <td>
                                 @if ($item->delivery_status == "processing")
-                                    <a href="{{route('cancelOrder', $item->id)}}" onclick="confirmation(event)"><button class="btn btn-danger">Cancel Order</button></a>
+                                    <a href="{{route('cancelOrder', $item->id)}}" onclick="return confirm('Are you sure want to cancel this order?')"><button class="btn btn-danger">Cancel Order</button></a>
                                 @else
                                     <strong class="text-success">Done Processing</strong>
                                 @endif
@@ -339,33 +339,7 @@
          <p class="mx-auto">Copyright © 2023 By <span class="author-copy">Tran Dac Thuong</span>. All Rights Reserved</p>
       </div>
 
-      <script>
-         function confirmation(ev) {
-           ev.preventDefault();
-           var urlToRedirect = ev.currentTarget.getAttribute('href');  
-           console.log(urlToRedirect); 
-           swal({
-               title: "Are you sure to cancel this order",
-               text: "You will not be able to revert this!",
-               icon: "warning",
-               buttons: true,
-               dangerMode: true,
-           })
-           .then((willCancel) => {
-               if (willCancel) {
-   
-   
-                    
-                   window.location.href = urlToRedirect;
-                  
-               }  
-   
-   
-           });
-   
-           
-       }
-      </script>
+     
 
       <script>
          document.addEventListener("DOMContentLoaded", function(event) { 

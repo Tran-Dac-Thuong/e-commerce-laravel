@@ -34,12 +34,23 @@
             margin-left: 5px;
          }
          .detail-item{
-           margin-left: 40% !important;
-           margin-top: 5% !important;
+            margin-left: 28% !important;
+            margin-top: 15% !important;
+            margin-bottom: 10% !important;
+            box-shadow: 1px 2px 20px #dddd;
+            border-radius: 5px;
+            min-width: 700px !important;
+           padding: 20px !important;
+           border: 1px solid #dddd;
+         }
         
+         .box{
+            display: flex !important;
+            justify-content: space-between !important;
+            gap: 50px !important;
          }
          .img-box img{
-            width: 350px !important;
+            width: 250px !important;
          }
          .strong-text{
             font-weight: bold;
@@ -101,6 +112,11 @@
          }
          .footer_links a:hover{
             color: #f7444e !important;
+         }
+         .product_name{
+            display: flex;
+            justify-content: space-between;
+            min-width: 300px;
          }
       </style>
    </head>
@@ -221,16 +237,17 @@
                         </li>
                 </div>
             </div>
+         </header>
 
-            <div class="col-sm-6 col-md-4 col-lg-4 detail-item mt-5">
+            <div class="col-sm-6 col-md-4 col-lg-4 detail-item">
                 <div class="box">
                   
                    <div class="img-box">
-                      <img src="{{asset($product->image)}}" alt="">
+                      <img src="{{asset($product->image)}}">
                    </div>
                    <div class="detail-box">
-                      <h5>
-                        <span class="strong-text">Product name: </span>{{$product->title}}
+                      <h5 class="product_name">
+                        <span class="strong-text">Product name: </span><span>{{$product->title}}</span>
                       </h5>
     
                       @if ($product->discount_price != null)
