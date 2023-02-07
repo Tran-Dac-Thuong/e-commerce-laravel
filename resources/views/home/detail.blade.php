@@ -118,10 +118,39 @@
             justify-content: space-between;
             min-width: 300px;
          }
+         #spinner {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .5s ease-out, visibility 0s linear .5s;
+            z-index: 99999;
+         }
+
+         #spinner.show {
+            transition: opacity .5s ease-out, visibility 0s linear 0s;
+            visibility: visible;
+            opacity: 1;
+         }
+         .product_text{
+            margin-right: 10px !important;
+         }
+         body::-webkit-scrollbar{
+            width: 14px;
+         }
+         body::-webkit-scrollbar-thumb{
+            background-color: #f7444e;
+         }
+         body::-webkit-scrollbar-track{
+            background-color: white;
+         }
       </style>
    </head>
    <body>
       @include('sweetalert::alert')
+      <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+         <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status">
+             <span class="sr-only">Loading...</span>
+         </div>
+       </div>
       <div class="hero_area">
          <!-- header section strats -->
          <header class="header_section headnavbar">
@@ -247,7 +276,7 @@
                    </div>
                    <div class="detail-box">
                       <h5 class="product_name">
-                        <span class="strong-text">Product name: </span><span>{{$product->title}}</span>
+                        <span class="strong-text product_text">Product name: </span><span>{{$product->title}}</span>
                       </h5>
     
                       @if ($product->discount_price != null)
@@ -380,5 +409,7 @@
       <script src="home/js/custom.js"></script>
 
       <script src="js/validate.js"></script>
+
+      <script src="js/Spinner.js"></script>
    </body>
 </html>

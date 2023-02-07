@@ -29,6 +29,7 @@ class HomeController extends Controller
         return view('home.index')->with(["product"=>$product]);
     }
 
+
     public function detail_product($id){
         if(Auth::id()){
             $product = Product::find($id);

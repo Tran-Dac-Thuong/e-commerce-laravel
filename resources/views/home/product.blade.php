@@ -20,6 +20,8 @@
       <link href="home/css/style.css" rel="stylesheet" />
       <!-- responsive style -->
       <link href="home/css/responsive.css" rel="stylesheet" />
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
       <style>
         .search-icon{
             margin-left: -4px;
@@ -84,6 +86,10 @@
          .author-copy{
             color: #f7444e;
          }
+         .quantity_input{
+            width: 80px;
+            margin-left: 55px;
+         }
          .headnavbar{
             position: fixed !important;
             top: 0 !important;
@@ -94,10 +100,66 @@
          .footer_links a:hover{
             color: #f7444e !important;
          }
+         #spinner {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .5s ease-out, visibility 0s linear .5s;
+            z-index: 99999;
+         }
+
+         #spinner.show {
+            transition: opacity .5s ease-out, visibility 0s linear 0s;
+            visibility: visible;
+            opacity: 1;
+         }
+         #scroll {
+            position:fixed;
+            right:20px;
+            bottom:20px;
+            cursor:pointer;
+            width:50px;
+            height:50px;
+            background-color:#f7444e;
+            text-indent:-9999px;
+            display:none;
+            -webkit-border-radius:60px;
+            -moz-border-radius:60px;
+            border-radius:60px
+         }
+         #scroll span {
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-8px;
+            margin-top:-12px;
+            height:0;
+            width:0;
+            border:8px solid transparent;
+            border-bottom-color:#ffffff;
+         }
+         #scroll:hover {
+            background-color:#f7444e;
+            opacity:1;filter:"alpha(opacity=100)";
+            -ms-filter:"alpha(opacity=100)";
+         }
+         body::-webkit-scrollbar{
+            width: 14px;
+         }
+         body::-webkit-scrollbar-thumb{
+            background-color: #f7444e;
+         }
+         body::-webkit-scrollbar-track{
+            background-color: white;
+         }
       </style>
    </head>
    <body class="sub_page">
       @include('sweetalert::alert')
+      <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+         <div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status">
+             <span class="sr-only">Loading...</span>
+         </div>
+       </div>
       <div class="hero_area">
          <!-- header section strats -->
          <header class="header_section headnavbar">
@@ -395,6 +457,8 @@
          <p class="mx-auto">Copyright © 2023 By <span class="author-copy">Tran Dac Thuong</span>. All Rights Reserved</p>
       </div>
 
+      <a href="#" id="scroll" style="display: none;"><span></span></a>
+
       <!-- footer section -->
       <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
@@ -416,5 +480,9 @@
       <script src="home/js/custom.js"></script>
 
       <script src="js/validate.js"></script>
+
+      <script src="js/Spinner.js"></script>
+
+      <script src="js/BackToTop.js"></script>
    </body>
 </html>
