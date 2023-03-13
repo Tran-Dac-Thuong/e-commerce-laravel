@@ -297,26 +297,26 @@
                         <div class="row">
                           <div class="form-group col-6">
                             <label for="">Title</label>
-                            <input type="text" name="title" class="form-control input-product" placeholder="Enter title...">
+                            <input type="text" name="title" required class="form-control input-product" placeholder="Enter title...">
                           </div>
                           <div class="form-group col-6">
                             <label for="">Price</label>
-                            <input type="text" name="price" class="form-control input-product" placeholder="Enter price...">
+                            <input type="text" name="price" required min="10" max="1000" class="form-control input-product" placeholder="Enter price...">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col-6">
                             <label for="">Quantity</label>
-                            <input type="number" name="quantity" value="0" min="0" class="form-control input-product">
+                            <input type="number" name="quantity" required value="1" min="1" max="10" class="form-control input-product">
                           </div>
                           <div class="form-group col-6">
                             <label for="">Discount price</label>
-                            <input type="text" name="discount_price" class="form-control input-product" placeholder="Enter discount price...">
+                            <input type="text" name="discount_price" required class="form-control input-product" placeholder="Enter discount price...">
                           </div>
                         </div>
                         <div class="form-group">
                           <label for="">Description</label>
-                          <textarea name="description" class="form-control input-product" id="" cols="30" rows="5" placeholder="Enter description..."></textarea>
+                          <textarea name="description" class="form-control input-product" id="textarea" cols="30" rows="5" placeholder="Enter description..."></textarea>
                         
                         </div>
                       
@@ -324,7 +324,7 @@
                         <div class="form-group">
                           <label for="">Category</label>
                           <select class="form-control input-product" name="category" id="">
-                            <option value="">--Selected--</option>
+                            
                             @foreach ($category as $item)
                               <option value="{{$item->category_name}}">{{$item->category_name}}</option>
                             @endforeach
@@ -332,10 +332,10 @@
                         </div>
                         <div class="form-group">
                           <label for="">Image</label>
-                          <input type="file" name="image" class="form-control input-product">
+                          <input type="file" name="image" required class="form-control input-product">
                         </div>
                         <div class="form-group">
-                          <input type="submit" value="Create" class="btn btn-primary">
+                          <input type="submit" onclick="return validate()" value="Create" class="btn btn-primary">
                         </div>
                     </form>
                   </div>
@@ -375,5 +375,16 @@
     <!-- Custom js for this page -->
     <script src="admin/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script>
+      function validate() {
+          let textarea = document.getElementById('textarea').value;
+
+          if (textarea == "") {
+              alert('Description can not be blank!');
+              return false;
+          }
+      }
+    </script>
   </body>
 </html>

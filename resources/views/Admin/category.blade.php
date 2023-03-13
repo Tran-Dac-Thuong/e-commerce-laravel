@@ -309,7 +309,7 @@
                     <div class="form-category">
                         <form action="{{route('postCategory')}}" class="row" method="POST">
                             @csrf
-                            <input type="text" class="form-control col-4 input-category" name="category_name" placeholder="Enter category...">
+                            <input type="text" class="form-control col-4 input-category" required name="category_name" placeholder="Enter category...">
                             <input type="submit" class="btn btn-primary ml-3 mb-3" value="Add new">
                         </form>
                     </div>

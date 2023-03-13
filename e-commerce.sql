@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2023 at 04:50 PM
+-- Generation Time: Mar 13, 2023 at 05:29 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -99,14 +99,14 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2023_01_29_091742_create_carts_table', 1),
 (6, '2023_01_29_091802_create_orders_table', 1),
 (7, '2023_01_29_091816_create_products_table', 1),
-(8, '2023_01_29_091826_create_categories_table', 1);
+(8, '2023_01_29_091826_create_categories_table', 1),
+(9, '2014_10_12_000000_create_users_table', 2);
 
 -- --------------------------------------------------------
 
@@ -136,13 +136,14 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `name`, `email`, `user_id`, `product_title`, `quantity`, `price`, `image`, `product_id`, `payment_status`, `delivery_status`, `created_at`, `updated_at`) VALUES
 (1, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '200', '/storage/images/1675005200p1.png', '2', 'Paid', 'Delivered', '2023-01-29 11:06:01', '2023-01-29 11:14:16'),
-(2, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '180', '/storage/images/1675005242p8.png', '3', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
+(2, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '180', '/storage/images/1675005242p8.png', '3', 'cash on delivery', 'Order canceled', '2023-01-29 11:06:01', '2023-02-05 04:10:47'),
 (3, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '100', '/storage/images/1675005291p10.png', '4', 'cash on delivery', 'Order canceled', '2023-01-29 11:06:01', '2023-01-29 11:12:39'),
 (4, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '150', '/storage/images/1675005345p11.png', '5', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
 (5, 'User01', 'user01@gmail.com', '1', 'women\'s dress', '1', '50', '/storage/images/1675005388p12.png', '6', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
 (6, 'User01', 'user01@gmail.com', '1', 'women\'s dress', '1', '100', '/storage/images/1675005445p4.png', '7', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
 (7, 'User01', 'user01@gmail.com', '7', 'shoes', '1', '160', '/storage/images/1675015272shoes01.jpg', '9', 'Paid', 'processing', '2023-01-30 10:53:41', '2023-01-30 10:53:41'),
-(8, 'User01', 'user01@gmail.com', '1', 'shoes', '1', '160', '/storage/images/1675015272shoes01.jpg', '9', 'cash on delivery', 'processing', '2023-01-30 10:54:59', '2023-01-30 10:54:59');
+(8, 'User01', 'user01@gmail.com', '1', 'shoes', '1', '160', '/storage/images/1675015272shoes01.jpg', '9', 'cash on delivery', 'processing', '2023-01-30 10:54:59', '2023-01-30 10:54:59'),
+(9, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '2', '360', '/storage/images/1675005242p8.png', '3', 'cash on delivery', 'processing', '2023-02-07 04:47:54', '2023-02-07 04:47:54');
 
 -- --------------------------------------------------------
 
@@ -199,7 +200,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `description`, `image`, `category`, `quantity`, `price`, `discount_price`, `created_at`, `updated_at`) VALUES
-(2, 'men\'s shirt', 'This is men\'s shirt', '/storage/images/1675005200p1.png', 'Shirts', '2', '300', '200', '2023-01-29 08:13:21', '2023-01-29 10:53:27'),
+(2, 'men\'s shirt', 'This is men\'s shirt', '/storage/images/1675005200p1.png', 'Shirts', '2', '300', '200', '2023-01-29 08:13:21', '2023-03-13 09:06:24'),
 (3, 'men\'s shirt', 'This is men\'s shirt', '/storage/images/1675005242p8.png', 'Shirts', '2', '450', '180', '2023-01-29 08:14:02', '2023-01-29 10:53:04'),
 (4, 'men\'s shirt', 'This is men\'s shirt', '/storage/images/1675005291p10.png', 'Shirts', '2', '250', '100', '2023-01-29 08:14:51', '2023-01-29 10:52:37'),
 (5, 'men\'s shirt', 'This is men\'s shirt', '/storage/images/1675005345p11.png', 'Shirts', '2', '400', '150', '2023-01-29 08:15:45', '2023-01-29 10:51:20'),
@@ -218,6 +219,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -229,9 +231,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'User01', 'user01@gmail.com', NULL, '$2y$10$hq0R6ezfPoemTNqxrAHuXu40WjxIgFtY6mYgG9ajsGbiCgBV05AWW', NULL, '2023-01-29 04:20:34', '2023-01-29 04:20:34'),
-(4, 'User02', 'user02@gmail.com', NULL, '$2y$10$BAeCHC4jlH0F19uRt/SUB.Lp5cqkdSJZmqI8KzDruNS/VDPQSpR9y', NULL, '2023-01-30 10:04:51', '2023-01-30 10:04:51');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', '1', NULL, '$2y$10$95/52cujzoOvIq.m5YSnYe.OmmylR5in0yo9lJuH3vO.oTzZ3b.06', NULL, '2023-03-13 08:44:43', '2023-03-13 08:44:43'),
+(2, 'User', 'user@gmail.com', '0', NULL, '$2y$10$B3lUfbIoZh/E2cbZ.udC8eG3vG20thPQrOk8YBGir1HL9Cm2zKvFu', NULL, '2023-03-13 08:45:25', '2023-03-13 08:45:25');
 
 --
 -- Indexes for dumped tables
@@ -303,7 +305,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -321,13 +323,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -345,7 +347,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

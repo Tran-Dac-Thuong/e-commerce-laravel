@@ -300,26 +300,26 @@
                           <div class="row">
                             <div class="form-group col-6">
                               <label for="">Title</label>
-                              <input type="text" name="title" value="{{$product->title}}" class="form-control input-product" placeholder="Enter title...">
+                              <input type="text" name="title" required value="{{$product->title}}" class="form-control input-product" placeholder="Enter title...">
                             </div>
                             <div class="form-group col-6">
                               <label for="">Price</label>
-                              <input type="text" name="price" value="{{$product->price}}" class="form-control input-product" placeholder="Enter price...">
+                              <input type="text" name="price" required min="100" max="1000" value="{{$product->price}}" class="form-control input-product" placeholder="Enter price...">
                             </div>
                           </div>
                           <div class="row">
                             <div class="form-group col-6">
                               <label for="">Quantity</label>
-                              <input type="number" name="quantity" value="{{$product->quantity}}" min="0" class="form-control input-product">
+                              <input type="number" name="quantity" required min="0" max="10" value="{{$product->quantity}}" min="0" class="form-control input-product">
                             </div>
                             <div class="form-group col-6">
                               <label for="">Discount price</label>
-                              <input type="text" name="discount_price" value="{{$product->discount_price}}" class="form-control input-product" placeholder="Enter discount price...">
+                              <input type="text" name="discount_price" required value="{{$product->discount_price}}" class="form-control input-product" placeholder="Enter discount price...">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="description" class="form-control input-product" cols="30" rows="5" placeholder="Enter description...">{{$product->description}}</textarea>
+                            <textarea name="description" id="textarea" class="form-control input-product" cols="30" rows="5" placeholder="Enter description...">{{$product->description}}</textarea>
     
                           </div>
                                            
@@ -341,7 +341,7 @@
                             <input type="file" name="image" class="form-control input-product">
                           </div>
                           <div class="form-group">
-                            <input type="submit" value="Save change" class="btn btn-warning">
+                            <input type="submit" onclick="return validate()" value="Save change" class="btn btn-warning">
                           </div>
                       </form>
                 </div>
@@ -381,5 +381,16 @@
     <!-- Custom js for this page -->
     <script src="admin/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script>
+      function validate() {
+          let textarea = document.getElementById('textarea').value;
+
+          if (textarea == "") {
+              alert('Description can not be blank!');
+              return false;
+          }
+      }
+    </script>
   </body>
 </html>
