@@ -68,3 +68,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Installation Guide
 
 Open Mysql (Xampp) and run the attachment e_commerce.sql to create a database named e_commerce with available data.
+
+In terminal, type php artisan serve to run the project.
