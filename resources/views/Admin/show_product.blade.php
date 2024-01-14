@@ -112,6 +112,14 @@
               <span class="menu-title">Order</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{route('show_contact')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Contact</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -287,7 +295,13 @@
                 </div>       
                 @endif
               </div>
-            
+              <h1 class="text-center mb-3">All Products</h1>
+              <form action="{{route('searchProductAdmin')}}" method="GET" class="mb-4 ml-1 row">
+               @csrf
+               <input type="text" class="form-control col-4 search-input" placeholder="Search by title..." name="searchProduct">
+               <input type="submit" class="btn btn-primary ml-2" value="Search">
+             </form>
+           
                 <table class="table tb-product">
                     <thead>
                         <tr>
@@ -302,7 +316,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($product as $item)
+                        @forelse ($product as $item)
                             <tr>
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->description}}</td>
@@ -318,7 +332,12 @@
                                     <a href="{{route('deleteProduct', $item->id)}}"><button onclick="return confirm('Are you sure want to delete this product?')" class="btn btn-danger mr-2">Delete</button></a>
                                 </td>
                             </tr>
-                        @endforeach
+                          @empty
+                            <tr>
+                                 <td colspan="8"  class="text-center">No products found</td>
+                            </tr>
+                           
+                        @endforelse
                        
                     </tbody>
                 </table>
@@ -326,6 +345,7 @@
                   {{$product->links()}}
                  
                </div>
+              
             </div>
         </div>
        

@@ -120,6 +120,14 @@
               <span class="menu-title">Order</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{route('show_contact')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Contact</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -288,11 +296,12 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <h1 class="text-center mb-3">All Orders</h1>
-                <form action="{{route('search')}}" method="GET" class="mb-4 ml-1 row">
+                <form action="{{route('searchOrder')}}" method="GET" class="mb-4 ml-1 row">
                   @csrf
-                  <input type="text" class="form-control col-4 search-input" placeholder="Enter name or product title" name="search">
+                  <input type="text" class="form-control col-4 search-input" placeholder="Search by name or product title..." name="searchOrder">
                   <input type="submit" class="btn btn-primary ml-2" value="Search">
                 </form>
+              
                 <table class="table">
                     <thead>
                         <tr>
@@ -308,6 +317,7 @@
                             <th>Print PDF</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         @forelse ($order as $item)
                             <tr>
@@ -339,12 +349,12 @@
                                   <a href="{{route('printPDF', $item->id)}}"><button class="btn btn-warning">Print PDF</button></a>
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                  <td colspan="10" class="text-center">No search results found</td>
-                                </tr>
+                          @empty
+                           <tr >
+                                <td colspan="10"  class="text-center">No orders found</td>
+                           </tr>
                           
-                        @endforelse
+                          @endforelse
                        
                     </tbody>
                 </table>
@@ -352,6 +362,8 @@
                   {{$order->links()}}
                  
                </div>
+              
+                
             </div>
         </div>
        

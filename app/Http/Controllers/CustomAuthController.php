@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -22,6 +23,7 @@ class CustomAuthController extends Controller
     }
 
     public function indexlogin(){
+       
         return view("Auth.login");
     }
 
@@ -57,6 +59,7 @@ class CustomAuthController extends Controller
     }
 
     public function signup(){
+       
         return view("Auth.register");
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -43,7 +45,7 @@ class AdminController extends Controller
     }
 
     public function show_product(){
-        $product = DB::table("products")->paginate(5);
+        $product = DB::table("products")->paginate(4);
         //$product = Product::all();
         return view("Admin.show_product")->with(["product"=>$product]);
     }
@@ -111,9 +113,48 @@ class AdminController extends Controller
         return $pdf->download('invoice-'.$today.'.pdf');
     }
 
-    public function search_data(Request $request){
-        $searchText = $request->search;
-        $order = Order::where('name', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->get();
+    public function search_order(Request $request){
+        $searchText = $request->searchOrder;
+        $order = Order::where('name', 'LIKE', "%$searchText%")->orWhere('product_title', 'LIKE', "%$searchText%")->paginate(4);
         return view("Admin.order", compact('order'));
+    }
+
+    public function search_product(Request $request){
+        $searchText = $request->searchProduct;
+        $product = Product::where('title', 'LIKE', "%$searchText%")->paginate(4);
+        return view("Admin.show_product", compact('product'));
+    }
+
+    public function search_contact(Request $request){
+        $searchText = $request->searchContact;
+        $contact = Contact::where('name', 'LIKE', "%$searchText%")->orWhere('email', 'LIKE', "%$searchText%")->paginate(4);
+        return view("Admin.show_contact", compact('contact'));
+    }
+
+    public function show_contact(){
+        $contact = DB::table("contacts")->paginate(4);
+        return view("Admin.show_contact")->with(["contact"=>$contact]);
+    }
+
+    public function send_email_page($id){
+        $contact = Contact::find($id);
+      
+        return view("Admin.send_email_page")->with(["contact"=>$contact]);
+    }
+
+    public function send_email_to_customer(Request $request){
+       
+        Mail::send('home.mail.answer', ["fullname"=>$request->name, "answer"=>$request->answer], function($message) use ($request){
+            $message->from('hoangdeptraibodoiqua4321@gmail.com');
+            $message->to($request->email);
+            $message->subject("Answer Customer Question");
+          
+        });
+        return redirect()->back()->with('message', 'Send email succeed!');
+    }
+
+    public function delete_contact($id){
+        Contact::destroy($id);
+        return redirect()->back()->with('message', 'Delete contact succeed!');
     }
 }

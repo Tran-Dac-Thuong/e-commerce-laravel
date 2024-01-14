@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2023 at 05:29 PM
+-- Generation Time: Jan 14, 2024 at 12:14 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -69,6 +69,29 @@ INSERT INTO `categories` (`id`, `category_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `email`, `message`, `name`, `subject`, `created_at`, `updated_at`) VALUES
+(1, 'hoangdeptraibodoiqua4321@gmail.com', 'Hello Admin', 'Thuong Tran', 'Talking to admin', '2024-01-13 07:18:34', '2024-01-13 07:18:34');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -106,7 +129,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2023_01_29_091802_create_orders_table', 1),
 (7, '2023_01_29_091816_create_products_table', 1),
 (8, '2023_01_29_091826_create_categories_table', 1),
-(9, '2014_10_12_000000_create_users_table', 2);
+(9, '2014_10_12_000000_create_users_table', 2),
+(10, '2024_01_13_110034_create_contacts_table', 3);
 
 -- --------------------------------------------------------
 
@@ -129,21 +153,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `name`, `email`, `user_id`, `product_title`, `quantity`, `price`, `image`, `product_id`, `payment_status`, `delivery_status`, `created_at`, `updated_at`) VALUES
-(1, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '200', '/storage/images/1675005200p1.png', '2', 'Paid', 'Delivered', '2023-01-29 11:06:01', '2023-01-29 11:14:16'),
-(2, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '180', '/storage/images/1675005242p8.png', '3', 'cash on delivery', 'Order canceled', '2023-01-29 11:06:01', '2023-02-05 04:10:47'),
-(3, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '100', '/storage/images/1675005291p10.png', '4', 'cash on delivery', 'Order canceled', '2023-01-29 11:06:01', '2023-01-29 11:12:39'),
-(4, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '1', '150', '/storage/images/1675005345p11.png', '5', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
-(5, 'User01', 'user01@gmail.com', '1', 'women\'s dress', '1', '50', '/storage/images/1675005388p12.png', '6', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
-(6, 'User01', 'user01@gmail.com', '1', 'women\'s dress', '1', '100', '/storage/images/1675005445p4.png', '7', 'cash on delivery', 'processing', '2023-01-29 11:06:01', '2023-01-29 11:06:01'),
-(7, 'User01', 'user01@gmail.com', '7', 'shoes', '1', '160', '/storage/images/1675015272shoes01.jpg', '9', 'Paid', 'processing', '2023-01-30 10:53:41', '2023-01-30 10:53:41'),
-(8, 'User01', 'user01@gmail.com', '1', 'shoes', '1', '160', '/storage/images/1675015272shoes01.jpg', '9', 'cash on delivery', 'processing', '2023-01-30 10:54:59', '2023-01-30 10:54:59'),
-(9, 'User01', 'user01@gmail.com', '1', 'men\'s shirt', '2', '360', '/storage/images/1675005242p8.png', '3', 'cash on delivery', 'processing', '2023-02-07 04:47:54', '2023-02-07 04:47:54');
 
 -- --------------------------------------------------------
 
@@ -252,6 +261,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -305,13 +320,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -323,13 +344,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -347,7 +368,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

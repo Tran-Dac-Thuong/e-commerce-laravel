@@ -114,6 +114,14 @@
               <span class="menu-title">Order</span>
             </a>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{route('show_contact')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Contact</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->

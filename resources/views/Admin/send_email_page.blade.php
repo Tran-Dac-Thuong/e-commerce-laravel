@@ -6,40 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Page</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="admin/assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="admin/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="admin/assets/vendors/jvectormap/jquery-jvectormap.css">
-    <link rel="stylesheet" href="admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
-    <link rel="stylesheet" href="admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
-    <link rel="stylesheet" href="admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/admin/assets/vendors/owl-carousel-2/owl.theme.default.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
-    <link rel="stylesheet" href="admin/assets/css/style.css">
+    <link rel="stylesheet" href="/admin/assets/css/style.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="admin/assets/images/admin_favicon.png" />
+    <link rel="shortcut icon" href="/admin/assets/images/admin_favicon.png" />
     <script src="https://kit.fontawesome.com/e6af8d83d3.js" crossorigin="anonymous"></script>
-    <style style="text/css">
-      .my-profile{
+    <style type="text/css">
+        .product-title{
+            text-align: center;
+        }
+        .form-product{
+          
+            margin-top: 50px;
+        }
+        .input-product{
+            color: white !important;
+            margin-bottom: 20px;
+        }
+        .input-product:focus{
+            border: 1px solid white !important;
+        }
+        .tb-category{
+            margin-top: 50px;
+            margin-left: 42%;
+           
+        }
+        .my-profile{
           margin-top: -26%;
         }
-      
     </style>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        
+      
         <ul class="nav">
           <li class="nav-item profile my-profile">
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="admin/assets/images/faces/face24.jpg" alt="">
+                  <img class="img-xs rounded-circle " src="/admin/assets/images/faces/face24.jpg" alt="">
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
@@ -62,18 +80,18 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
               <span class="menu-title">Product</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse show" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('product')}}">Add product</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('show_product')}}">Show product</a></li>
-                
+               
               </ul>
             </div>
           </li>
@@ -108,16 +126,16 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar p-0 fixed-top d-flex flex-row">
           <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
           </div>
           <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            
+           
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
-              
+               
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                   <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
@@ -168,7 +186,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="admin/assets/images/faces/face4.jpg" alt="images" class="rounded-circle profile-pic">
+                      <img src="/admin/assets/images/faces/face4.jpg" alt="images" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Mark send you a message</p>
@@ -178,7 +196,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="admin/assets/images/faces/face2.jpg" alt="images" class="rounded-circle profile-pic">
+                      <img src="/admin/assets/images/faces/face2.jpg" alt="images" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Cregh send you a message</p>
@@ -188,7 +206,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item preview-item">
                     <div class="preview-thumbnail">
-                      <img src="admin/assets/images/faces/face3.jpg" alt="images" class="rounded-circle profile-pic">
+                      <img src="/admin/assets/images/faces/face3.jpg" alt="images" class="rounded-circle profile-pic">
                     </div>
                     <div class="preview-item-content">
                       <p class="preview-subject ellipsis mb-1">Profile picture updated</p>
@@ -246,159 +264,81 @@
                   <p class="p-3 mb-0 text-center">See all notifications</p>
                 </div>
               </li>
-             <li class="nav-item dropdown border-left">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="fa fa-user"></i>       
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">              
-                <a class="dropdown-item preview-item" href="{{route('logout')}}">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="fa fa-sign-out-alt text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Logout</p>   
-                  </div>
+              <li class="nav-item dropdown border-left">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                  <i class="fa fa-user"></i>       
                 </a>
-              </div>                            
-             </li>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">              
+                  <a class="dropdown-item preview-item" href="{{route('logout')}}">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="fa fa-sign-out-alt text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Logout</p>   
+                    </div>
+                  </a>
+                </div>                            
+               </li>
           </div>
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-           
-          
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_product}}</h3>
-                         
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Product</h6>
+            <div class="content-wrapper">
+              
+                <div class="container">
+                  <div class="col-12">
+                    @if (session()->has('message'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{session()->get('message')}}
+                    </div>       
+                    @endif
+                </div>  
+                  <div class="product-title">
+                    <h1>Send Email</h1>
                   </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_order}}</h3>
-                        
+                  <div class="form-product">
+                      <form action="{{route('postEmail')}}" method="POST">
+                        @csrf
+                        {{-- <div class="row"> --}}
+                          <div class="form-group col-12">
+                            <label for="">Name</label>
+                            <input type="text" name="name" style="color: black !important" value="{{$contact->name}}" readonly class="form-control input-product">
+                          </div>
+                          <div class="form-group col-12">
+                            <label for="">Email</label>
+                            <input type="email" name="email" style="color: black !important" value="{{$contact->email}}" readonly class="form-control input-product">
+                          </div>
+                          <div class="form-group col-12">
+                            <label for="">Subject</label>
+                            <input type="text" name="subject" style="color: black !important" value="{{$contact->subject}}" readonly class="form-control input-product">
+                          </div>
+                        {{-- </div> --}}
+                        {{-- <div class="row"> --}}
+                          <div class="form-group col-12">
+                            <label for="">Message</label>
+                            <input type="text" name="message" style="color: black !important" readonly value="{{$contact->message}}" class="form-control input-product">
+                          </div>
+                          <div class="form-group">
+                            <label for="">Answer</label>
+                            <textarea name="answer" class="form-control input-product" id="textarea" cols="30" rows="5" placeholder="Enter your answer..."></textarea>
+                          
+                          </div>
+                        {{-- </div> --}}
+                     
+                        <div class="form-group">
+                          <input type="submit" onclick="return validate()" value="Send email" class="btn btn-primary">
                         </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Order</h6>
+                    </form>
                   </div>
+                
                 </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_user}}</h3>
-                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Customer</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">${{$total_revenue}}</h3>
-                         
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Revenue</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_delivery}}</h3>
-                       
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Order Delivered</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_processing}}</h3>
-                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Order Processing</h6>
-                  </div>
-                </div>
-              </div>
+               
             </div>
-           
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+       
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
          
@@ -410,24 +350,35 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/admin/assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-    <script src="admin/assets/vendors/chart.js/Chart.min.js"></script>
-    <script src="admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
-    <script src="admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
-    <script src="admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
+    <script src="/admin/assets/vendors/chart.js/Chart.min.js"></script>
+    <script src="/admin/assets/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="/admin/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+    <script src="/admin/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="/admin/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
-    <script src="admin/assets/js/off-canvas.js"></script>
-    <script src="admin/assets/js/hoverable-collapse.js"></script>
-    <script src="admin/assets/js/misc.js"></script>
-    <script src="admin/assets/js/settings.js"></script>
-    <script src="admin/assets/js/todolist.js"></script>
+    <script src="/admin/assets/js/off-canvas.js"></script>
+    <script src="/admin/assets/js/hoverable-collapse.js"></script>
+    <script src="/admin/assets/js/misc.js"></script>
+    <script src="/admin/assets/js/settings.js"></script>
+    <script src="/admin/assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-    <script src="admin/assets/js/dashboard.js"></script>
+    <script src="/admin/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script>
+      function validate() {
+          let textarea = document.getElementById('textarea').value;
+
+          if (textarea == "") {
+              alert('Answer can not be blank!');
+              return false;
+          }
+      }
+    </script>
   </body>
 </html>

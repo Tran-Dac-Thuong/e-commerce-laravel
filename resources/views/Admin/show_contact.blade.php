@@ -22,18 +22,37 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="admin/assets/images/admin_favicon.png" />
     <script src="https://kit.fontawesome.com/e6af8d83d3.js" crossorigin="anonymous"></script>
-    <style style="text/css">
-      .my-profile{
-          margin-top: -26%;
+    <style type="text/css">
+          .pagination-product{
+              margin-left: 34% !important;
+              position: absolute !important;
+              top: 80% !important;        
+          }
+          .my-profile{
+            margin-top: -26%;
+          }
+        .img_product img{
+            width: 100px !important;
+            height: 70px !important;
+            border-radius: 0px !important;
         }
-      
+        thead{
+          background-color: #00d25b; 
+        }
+        thead th{
+          color: white !important;
+          font-size: 18px !important;
+        }
+        tbody td{
+          color: white !important;
+        }
     </style>
   </head>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        
+      
         <ul class="nav">
           <li class="nav-item profile my-profile">
             <div class="profile-desc">
@@ -62,18 +81,18 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#" aria-expanded="false" aria-controls="ui-basic">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
               <span class="menu-title">Product</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse show" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{route('product')}}">Add product</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{route('show_product')}}">Show product</a></li>
-                
+               
               </ul>
             </div>
           </li>
@@ -114,10 +133,10 @@
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="mdi mdi-menu"></span>
             </button>
-            
+         
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
-              
+               
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="createbuttonDropdown">
                   <h6 class="p-3 mb-0">Projects</h6>
                   <div class="dropdown-divider"></div>
@@ -157,7 +176,7 @@
                   <p class="p-3 mb-0 text-center">See all projects</p>
                 </div>
               </li>
-            
+              
               <li class="nav-item dropdown border-left">
                 <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                   <i class="mdi mdi-email"></i>
@@ -246,162 +265,86 @@
                   <p class="p-3 mb-0 text-center">See all notifications</p>
                 </div>
               </li>
-             <li class="nav-item dropdown border-left">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                <i class="fa fa-user"></i>       
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">              
-                <a class="dropdown-item preview-item" href="{{route('logout')}}">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-dark rounded-circle">
-                      <i class="fa fa-sign-out-alt text-success"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <p class="preview-subject mb-1">Logout</p>   
-                  </div>
+              <li class="nav-item dropdown border-left">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                  <i class="fa fa-user"></i>       
                 </a>
-              </div>                            
-             </li>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">              
+                  <a class="dropdown-item preview-item" href="{{route('logout')}}">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="fa fa-sign-out-alt text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject mb-1">Logout</p>   
+                    </div>
+                  </a>
+                </div>                            
+               </li>
           </div>
         </nav>
         <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-           
-          
-            <div class="row">
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_product}}</h3>
-                         
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Product</h6>
-                  </div>
-                </div>
+            <div class="content-wrapper">
+              <div class="col-12">
+                @if (session()->has('message'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{session()->get('message')}}
+                </div>       
+                @endif
               </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_order}}</h3>
-                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Order</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_user}}</h3>
-                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Customer</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">${{$total_revenue}}</h3>
-                         
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Total Revenue</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_delivery}}</h3>
+            
+             <h1 class="text-center mb-3">All Contacts</h1>
+             <form action="{{route('searchContact')}}" method="GET" class="mb-4 ml-1 row">
+              @csrf
+              <input type="text" class="form-control col-4 search-input" placeholder="Search by name or email..." name="searchContact">
+              <input type="submit" class="btn btn-primary ml-2" value="Search">
+            </form>
+             
+                <table class="table tb-product">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>                        
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($contact as $item)
+                            <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->email}}</td>
+                                <td>{{$item->subject}}</td>
+                                <td>{{$item->message}}</td>
+                             
+                                <td>
+                                    <a href="{{route('sendEmail', $item->id)}}"><button class="btn btn-info">Send Email</button></a>
+                                    <a href="{{route('deleteContact', $item->id)}}"><button onclick="return confirm('Are you sure want to delete this contact?')" class="btn btn-danger mr-2">Delete</button></a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr >
+                                 <td colspan="5"  class="text-center">No contacts found</td>
+                            </tr>
+                        @endforelse
                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Order Delivered</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="d-flex align-items-center align-self-start">
-                          <h3 class="mb-0">{{$total_processing}}</h3>
-                        
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="icon icon-box-success ">
-                          <span class="mdi mdi-arrow-top-right icon-item"></span>
-                        </div>
-                      </div>
-                    </div>
-                    <h6 class="text-muted font-weight-normal">Order Processing</h6>
-                  </div>
-                </div>
-              </div>
+                    </tbody>
+                </table>
+                <div class="pagination-product mt-5">
+                  {{$contact->links()}}
+                 
+               </div>
+             
             </div>
-           
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+       
           <!-- content-wrapper ends -->
           <!-- partial:partials/_footer.html -->
-         
+          
           <!-- partial -->
         </div>
         <!-- main-panel ends -->

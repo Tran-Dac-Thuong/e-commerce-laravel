@@ -114,6 +114,10 @@
          body::-webkit-scrollbar-track{
             background-color: white;
          }
+         .user_email_text{
+            overflow: hidden;
+            text-overflow: ellipsis;
+         }
       </style>
    </head>
    <body class="sub_page">
@@ -125,7 +129,7 @@
        </div>
       <div class="hero_area">
          <!-- header section strats -->
-         <header class="header_section headnavbar">
+         <header class="header_section headnavbar" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
             <div class="container">
                <nav class="navbar navbar-expand-lg custom_nav-container ">
                   <a class="navbar-brand" href="{{route('index')}}"><img width="250" src="images/logo.png" alt="#" /></a>
@@ -134,10 +138,10 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                      <ul class="navbar-nav">
-                        <li class="nav-item">
+                        <li class="nav-item active">
                            <a class="nav-link" href="{{route('index')}}">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item dropdown">
+                       <li class="nav-item dropdown">
                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Pages <span class="caret"></span></a>
                            <ul class="dropdown-menu">
                               <li><a href="{{route('about')}}">About</a></li>
@@ -156,28 +160,17 @@
                         <li class="nav-item">
                            <a class="nav-link" href="{{route('showOrder')}}">Order</a>
                         </li>
-                        @if (Route::has('login'))
-                        @auth
-                           
-                        <li class="nav-item dropdown">                 
-                           <a class="nav-link dropdown-toggle" id="user" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="fa fa-user"></i></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="{{route('logout')}}">Logout</a></li>
-                           </ul>
-                        </li>
-                         
-                        @else
-                         
-                        <li class="nav-item">
-                           <a class="nav-link" id="login" href="{{route('login')}}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" id="register" href="{{route('register')}}">Register</a>
-                        </li>
-
-                        @endauth
-
-                     @endif
+                      
+                            
+                           <li class="nav-item">
+                              <a class="nav-link" id="login" href="{{route('login')}}">Login</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" id="register" href="{{route('register')}}">Register</a>
+                           </li>
+      
+                        
+                      
                         <li class="nav-item row">
                            <a class="nav-link pr-2" href="{{route('showCart')}}" title="Cart">
                               <svg style="width: 28px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
@@ -233,14 +226,9 @@
                                  </g>
                               </svg>
                            </a>
-                           @if (Route::has('login'))
-                           @auth
-                              <strong class="mt-1">({{$cart_count}})</strong>
-                           @else
-                              <strong class="mt-1"></strong>
-                           @endauth
                           
-                           @endif
+                              <strong class="mt-1"></strong>
+                        
                         </li>
                         {{-- <form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -363,7 +351,8 @@
                           <p>Subscribe To Get Discount Offers.</p>
                         </div>
                         <div class="form_sub">
-                           <form action="{{route('discount_offer')}}" method="GET">
+                           <form action="{{route('discount_offer')}}" method="POST">
+                              @csrf
                               <fieldset>
                                  <div class="field footer_dis_group">
                                     <input class="footer_input" type="email" id="discount_input_2" onkeyup="Discount2()" placeholder="Enter Your Mail" name="email" />

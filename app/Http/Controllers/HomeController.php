@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Cart;
+use App\Models\Contact;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Mail;
@@ -20,8 +21,9 @@ class HomeController extends Controller
         if(Auth::user()){
             $product = DB::table("products")->paginate(6);
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view('home.index')->with(["product"=>$product, "cart_count"=>$cart_count]);
+            return view('home.index')->with(["product"=>$product, "cart_count"=>$cart_count, "user_email"=>$user_email]);
         }
       
         // $product = Product::all();
@@ -31,14 +33,13 @@ class HomeController extends Controller
 
 
     public function detail_product($id){
-        if(Auth::id()){
+       
             $product = Product::find($id);
             $user_id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $user_id)->get()->count();
-            return view("home.detail")->with(['product'=>$product, 'cart_count'=>$cart_count]);
-        }else{
-            return redirect("login");
-        }
+            return view("home.detail")->with(['product'=>$product, 'cart_count'=>$cart_count, "user_email"=>$user_email]);
+       
     }
 
     public function add_cart(Request $request, $id){
@@ -100,15 +101,14 @@ class HomeController extends Controller
 
     public function show_cart(){
         
-        if(Auth::id()){
+       
             
-            $id = Auth::user()->id;
-            $cart = Cart::where("user_id", "=", $id)->paginate(3);
-            $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view("home.show_cart")->with(["cart"=>$cart, "cart_count"=>$cart_count]);
-        }else{
-            return redirect("login");
-        }
+            $user_id = Auth::user()->id;
+            $user_email = Auth::user()->email;
+            $cart = Cart::where("user_id", "=", $user_id)->paginate(3);
+            $cart_count = Cart::where("user_id", "=", $user_id)->get()->count();
+            return view("home.show_cart")->with(["cart"=>$cart, "cart_count"=>$cart_count, "user_id"=>$user_id,"user_email"=>$user_email]);
+      
       
     }
 
@@ -148,15 +148,14 @@ class HomeController extends Controller
     }
 
     public function show_order(){
-        if(Auth::id()){
+      
             $user = Auth::user();
             $user_id = $user->id;
+            $user_email = $user->email;
             $order = Order::where("user_id", "=", $user_id)->paginate(4);
             $cart_count = Cart::where("user_id", "=", $user_id)->get()->count();
-            return view("home.order")->with(['order'=>$order, 'cart_count'=>$cart_count]);
-        }else{
-            return redirect("login");
-        }
+            return view("home.order")->with(['order'=>$order, 'cart_count'=>$cart_count, "user_id"=>$user_id, "user_email"=>$user_email]);
+      
     }
 
     public function cancel_order($id){
@@ -168,14 +167,13 @@ class HomeController extends Controller
     }
   
     public function product_page(){
-        if(Auth::id()){    
+     
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $product = DB::table("products")->paginate(6);
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view("home.product")->with(["product"=>$product, "cart_count"=>$cart_count]);
-        }else{
-            return redirect("login");
-        }
+            return view("home.product")->with(["product"=>$product, "cart_count"=>$cart_count, "user_email"=>$user_email]);
+      
     }
 
     public function search_product(Request $request){
@@ -189,8 +187,9 @@ class HomeController extends Controller
     public function about_page(){
         if(Auth::user()){
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view('home.about')->with(["cart_count"=>$cart_count]);
+            return view('home.about')->with(["cart_count"=>$cart_count, "user_email"=>$user_email]);
         }
         return view("home.about");
     }
@@ -198,8 +197,9 @@ class HomeController extends Controller
     public function testimonial_page(){
         if(Auth::user()){
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view('home.testimonial')->with(["cart_count"=>$cart_count]);
+            return view('home.testimonial')->with(["cart_count"=>$cart_count, "user_email"=>$user_email]);
         }
         return view("home.testimonial");
     }
@@ -207,8 +207,9 @@ class HomeController extends Controller
     public function blog_page(){
         if(Auth::user()){
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-            return view('home.blog')->with(["cart_count"=>$cart_count]);
+            return view('home.blog')->with(["cart_count"=>$cart_count, "user_email"=>$user_email]);
         }
         return view("home.blog");
     }
@@ -216,21 +217,30 @@ class HomeController extends Controller
     public function contact_page(){
         if(Auth::user()){
             $id = Auth::user()->id;
+            $user_email = Auth::user()->email;
             $cart_count = Cart::where("user_id", "=", $id)->get()->count();
            
-            return view('home.contact')->with(["cart_count"=>$cart_count]);
+            return view('home.contact')->with(["cart_count"=>$cart_count, "user_email"=>$user_email]);
         }
         return view("home.contact");
     }
 
-    public function discount_offer(){
-        Alert::success("You have successfully registered", "You will get a discount when you buy our products");
+    public function discount_offer(Request $request){
+        Mail::send('home.mail.offer', ["user_email"=>$request->email], function($message) use ($request){
+            $message->from('hoangdeptraibodoiqua4321@gmail.com');
+            $message->to($request->email);
+            $message->subject("Get Discount Offers");
+          
+        });
+        Alert::success("Subscribe success");
         return redirect()->back();
+        // dd($request->email);
     }
 
     public function send_contact_email(Request $request){
-       
-        Alert::success("Email sent successfully", "We will respond to you as soon as possible");
+        $input = $request->all();
+        Contact::create($input);  
+        Alert::success("Submitted successfully", "We will respond to you as soon as possible");
         return redirect()->back();
     }
 }
