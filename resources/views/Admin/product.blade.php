@@ -309,7 +309,7 @@
                           </div>
                           <div class="form-group col-6">
                             <label for="">Price</label>
-                            <input type="text" name="price" required min="10" max="1000" class="form-control input-product" placeholder="Enter price...">
+                            <input type="number" name="price" required min="100" max="1000" class="form-control input-product" placeholder="Enter price...">
                           </div>
                         </div>
                         <div class="row">
@@ -319,7 +319,7 @@
                           </div>
                           <div class="form-group col-6">
                             <label for="">Discount price</label>
-                            <input type="text" name="discount_price" required class="form-control input-product" placeholder="Enter discount price...">
+                            <input type="number" name="discount_price" required min="100" max="1000" class="form-control input-product" placeholder="Enter discount price...">
                           </div>
                         </div>
                         <div class="form-group">
@@ -340,7 +340,7 @@
                         </div>
                         <div class="form-group">
                           <label for="">Image</label>
-                          <input type="file" name="image" required class="form-control input-product">
+                          <input type="file" name="image" accept=".png, .jpg" required class="form-control input-product">
                         </div>
                         <div class="form-group">
                           <input type="submit" onclick="return validate()" value="Create" class="btn btn-primary">

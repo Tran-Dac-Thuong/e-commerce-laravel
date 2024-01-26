@@ -24,6 +24,10 @@ Release date: 03/07
 
 OTP Code: OTP
 
+## Visa test account:
+
+Card number: 4242424242424242
+
 ## Installation Guide
 
 Open Mysql (Xampp) and run the attachment e_commerce.sql to create a database named e_commerce with available data.

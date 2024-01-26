@@ -12,6 +12,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -36,11 +37,33 @@ class AdminController extends Controller
     }
 
     public function post_product(Request $request){
-        $input = $request->all();
-        $filename = time().$request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->storeAs('images', $filename, 'public');
-        $input['image'] = '/storage/'.$path;
-        Product::create($input);
+
+        if($request->has('image')){
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $path = 'uploads/products/';
+            $file->move($path, $filename);
+        }
+
+        Product::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $path.$filename,
+            'category' => $request->category,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'discount_price' => $request->discount_price,
+        ]);
+
+        // $input = $request->all();
+        // $filename = time().$request->file('image')->getClientOriginalName();
+        // $path = $request->file('image')->storeAs('images', $filename, 'public');
+        // $input['image'] = '/storage/'.$path;
+        // Product::create($input);
         return redirect()->back()->with('message', 'Add new product succeed!');
     }
 
@@ -67,7 +90,12 @@ class AdminController extends Controller
     }
 
     public function delete_product($id){
-        Product::destroy($id);
+        $product = Product::find($id); 
+        // Product::destroy($id);
+        if(File::exists($product->image)){
+            File::delete($product->image);
+        }
+        $product->delete();
         return redirect()->back()->with('message', 'Delete product succeed!');
     }
 
@@ -79,15 +107,40 @@ class AdminController extends Controller
 
     public function save_change_product(Request $request, $id){
         $product = Product::find($id);
-        $input = $request->all();
-        $image = $request->image;
-        if($image != ""){
-            $filename = time().$request->file('image')->getClientOriginalName();
-            $path = $request->file('image')->storeAs('images', $filename, 'public');
-            $input['image'] = '/storage/'.$path;
-        }
+        // $input = $request->all();
+        // $image = $request->image;
+        // if($image != ""){
+        //     $filename = time().$request->file('image')->getClientOriginalName();
+        //     $path = $request->file('image')->storeAs('images', $filename, 'public');
+        //     $input['image'] = '/storage/'.$path;
+        // }
       
-        $product->update($input);
+        // $product->update($input);
+        if($request->has('image')){
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $path = 'uploads/products/';
+            $file->move($path, $filename);
+
+            if(File::exists($product->image)){
+                File::delete($product->image);
+            }
+        }
+
+        $product->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $path.$filename,
+            'category' => $request->category,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+            'discount_price' => $request->discount_price,
+        ]);
+
         return redirect()->back()->with('message', 'Update product succeed!');
     }
 

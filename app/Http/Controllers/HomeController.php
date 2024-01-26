@@ -178,10 +178,11 @@ class HomeController extends Controller
 
     public function search_product(Request $request){
         $id = Auth::user()->id;
+        $user_email = Auth::user()->email;
         $cart_count = Cart::where("user_id", "=", $id)->get()->count();
         $searchText = $request->search;
         $product = Product::where('title', 'LIKE', "%$searchText%")->paginate(6);
-        return view("home.product")->with(['product'=>$product, 'cart_count'=>$cart_count]);
+        return view("home.product")->with(['product'=>$product, 'cart_count'=>$cart_count, "user_email"=>$user_email]);
     }
 
     public function about_page(){

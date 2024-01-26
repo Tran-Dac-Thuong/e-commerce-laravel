@@ -137,6 +137,12 @@
          @extends('home.layout.navbar.navbar')
          <!-- end header section -->
         <div class="container sec_order">
+         @if (session()->has('message'))
+                     <div class="alert alert-success alert-dismissible">
+                           <button type="button" class="close" data-dismiss="alert">&times;</button>
+                           {{session()->get('message')}}
+                     </div>       
+                     @endif
          @if (DB::table('orders')->where('user_id', $user_id)->exists())
          <div class="table-responsive">
             <table class="table mt-5">

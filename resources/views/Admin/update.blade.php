@@ -312,17 +312,17 @@
                             </div>
                             <div class="form-group col-6">
                               <label for="">Price</label>
-                              <input type="text" name="price" required min="100" max="1000" value="{{$product->price}}" class="form-control input-product" placeholder="Enter price...">
+                              <input type="number" name="price" required min="100" max="1000" value="{{$product->price}}" class="form-control input-product" placeholder="Enter price...">
                             </div>
                           </div>
                           <div class="row">
                             <div class="form-group col-6">
                               <label for="">Quantity</label>
-                              <input type="number" name="quantity" required min="0" max="10" value="{{$product->quantity}}" min="0" class="form-control input-product">
+                              <input type="number" name="quantity" required min="1" max="10" value="{{$product->quantity}}" class="form-control input-product">
                             </div>
                             <div class="form-group col-6">
                               <label for="">Discount price</label>
-                              <input type="text" name="discount_price" required value="{{$product->discount_price}}" class="form-control input-product" placeholder="Enter discount price...">
+                              <input type="number" name="discount_price" min="100" max="1000" required value="{{$product->discount_price}}" class="form-control input-product" placeholder="Enter discount price...">
                             </div>
                           </div>
                           <div class="form-group">
@@ -346,7 +346,7 @@
                           </div>
                           <div class="form-group">
                             <label for="">Image</label>
-                            <input type="file" name="image" class="form-control input-product">
+                            <input type="file" name="image" accept=".png, .jpg" class="form-control input-product">
                           </div>
                           <div class="form-group">
                             <input type="submit" onclick="return validate()" value="Save change" class="btn btn-warning">

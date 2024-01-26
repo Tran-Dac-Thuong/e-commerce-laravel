@@ -12,8 +12,9 @@ class StripePaymentController extends Controller
 {
     public function payment_stripe($totalprice){
         $id = Auth::user()->id;
+        $user_email = Auth::user()->email;
         $cart_count = Cart::where("user_id", "=", $id)->get()->count();
-        return view("home.stripe")->with(['totalprice'=>$totalprice, 'cart_count'=>$cart_count]);
+        return view("home.stripe")->with(['totalprice'=>$totalprice, 'cart_count'=>$cart_count, "user_email"=>$user_email]);
     }
 
     public function post_payment_stripe(Request $request, $totalprice){
@@ -52,7 +53,7 @@ class StripePaymentController extends Controller
             
                         $order->name = $data->name;
                         $order->email = $data->email;
-                        $order->user_id = $data->id;
+                        $order->user_id = $data->user_id;
                         $order->product_title = $data->product_title;
                         $order->price = $data->price;
                         $order->quantity = $data->quantity;
@@ -68,7 +69,7 @@ class StripePaymentController extends Controller
                         $cart->delete();
                     }
 
-                    return redirect()->back()->with('message', 'Payment succeed!');
+                    return redirect("/showOrder")->with('message', 'Payment succeed!');
                    
                 }else{
                     return redirect()->back()->with('err_message', 'Money not add in wallet!');
