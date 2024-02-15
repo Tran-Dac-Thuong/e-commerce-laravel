@@ -1,8 +1,6 @@
 FROM php:8.1-fpm-alpine
 
-VOLUME /tmp
-
-COPY ./Hosting/E_Commerce /app
+COPY . .
 
 RUN apk add composer
 
