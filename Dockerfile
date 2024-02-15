@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN cp /usr/local/bin/composer2 /usr/local/bin/composer && composer install
+COPY --from=composer/composer:2-bin /composer /usr/bin/composer
 
 COPY . .
 
