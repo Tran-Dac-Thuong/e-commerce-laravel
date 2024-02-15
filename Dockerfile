@@ -1,5 +1,8 @@
 FROM php:8.1-fpm-alpine
 
+ENV APP_NAME=Laravel
+ENV APP_ENV=production
+
 WORKDIR /app
 
 COPY composer.json composer.lock ./
