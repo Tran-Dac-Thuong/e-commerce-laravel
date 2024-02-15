@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN composer2 install 
+RUN composer1 install 
 
 COPY . .
 
