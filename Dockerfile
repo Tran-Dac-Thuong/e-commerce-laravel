@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
+RUN apk add composer
+
 RUN composer install --production
 
 COPY . .
