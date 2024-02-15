@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-# Workaround 
-ENV COMPOSER_VERSION=1
-RUN unlink /usr/local/bin/composer && ln -s /usr/local/bin/composer${COMPOSER_VERSION:-2} /usr/local/bin/composer 
+RUN cp /usr/local/bin/composer2 /usr/local/bin/composer && composer install
 
 COPY . .
 
