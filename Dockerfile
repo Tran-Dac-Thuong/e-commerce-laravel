@@ -12,4 +12,4 @@ RUN php artisan migrate
 
 ENTRYPOINT ["php", "artisan", "serve"]
 
-EXPOSE 8080
+EXPOSE 8000
