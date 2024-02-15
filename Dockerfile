@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN composer clear-cache
-
-RUN composer install --production
+RUN composer install 
 
 COPY . .
 
