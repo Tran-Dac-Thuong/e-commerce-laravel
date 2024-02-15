@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN composer install --production
+RUN composer install --production --ignore-engines
 
 COPY . .
 
