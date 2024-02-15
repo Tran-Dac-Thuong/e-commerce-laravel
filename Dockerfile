@@ -4,9 +4,7 @@ WORKDIR /app
 
 COPY composer.json composer.lock ./
 
-RUN echo $PATH
-
-RUN apk add composer
+RUN composer clear-cache
 
 RUN composer install --production
 
