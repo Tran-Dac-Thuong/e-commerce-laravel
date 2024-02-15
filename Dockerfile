@@ -6,7 +6,7 @@ COPY composer.json composer.lock ./
 
 COPY --from=composer/composer:2-bin /composer /usr/bin/composer
 
-RUN composer install
+RUN composer install --from=composer/composer
 
 COPY . .
 
