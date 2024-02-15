@@ -1,13 +1,17 @@
 FROM php:8.1-fpm-alpine
 
-COPY . .
+WORKDIR /app
 
-RUN apk add composer
+COPY composer.json composer.lock ./
 
 RUN composer install
 
+COPY . .
+
 RUN php artisan migrate
 
-ENTRYPOINT ["php", "artisan", "serve"]
+RUN php artisan key:generate
 
-EXPOSE 8000
+EXPOSE 80
+
+CMD ["php-fpm"]
