@@ -6,6 +6,6 @@ COPY composer.json composer.lock ./
 
 COPY . .
 
-EXPOSE 8181
+EXPOSE 8000
 
 CMD ["php-fpm"]
