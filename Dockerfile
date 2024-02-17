@@ -6,6 +6,6 @@ COPY composer.json composer.lock ./
 
 COPY . .
 
-EXPOSE 8000
+ENTRYPOINT ["php", "artisan", "serve"]
 
-CMD ["php-fpm"]
+EXPOSE 8000
